@@ -2,8 +2,8 @@ package service
 
 import akka.http.scaladsl.marshalling.ToResponseMarshallable
 import com.google.inject.{Inject, Singleton}
-import db.{AdjustmentRepository, InvoiceRepository, ReceiptRepository, RefundRepository}
-import entity.BaseFinancialDocument
+import dao.entities.{Adjustment, FinancialDocument, Invoice, Receipt, Refund}
+import dao.repository.{AdjustmentRepository, InvoiceRepository, ReceiptRepository, RefundRepository}
 
 import scala.concurrent.Future
 @Singleton
@@ -12,8 +12,31 @@ class TransactionService @Inject()(invoiceRepository: InvoiceRepository,
                          refundRepository: RefundRepository,
                          adjustmentRepository: AdjustmentRepository) {
 
-  def getAllProducts(): Future[List[BaseFinancialDocument]] = ???
-  def getActiveProducts(): Future[List[BaseFinancialDocument]] = ???
+  def saveTransaction(financialDoc: FinancialDocument): Future[FinancialDocument] = {
+
+    financialDoc match {
+      case invoice: Invoice =>
+        invoiceRepository.save(invoice)
+      case receipt: Receipt => {
+        receiptRepository.save(receipt)
+      }
+      case refund: Refund => {
+        refundRepository.save(refund)
+      }
+      case adjustment: Adjustment => {
+        adjustmentRepository.save(adjustment)
+      }
+      case _ => Future.failed(new IllegalArgumentException("Unsupported FinancialDocument type"))
+    }
+  }
+
+  def save2(financialDocument: Invoice): Unit = {
+    invoiceRepository.save2(financialDocument)
+  }
+  def getAllInvoices(): Future[Seq[Invoice]] ={
+    this.invoiceRepository.findAll2()
+  }
+  def getActiveProducts(): Future[List[FinancialDocument]] = ???
 
   def getMinStockThreshold(id: Int): ToResponseMarshallable = ???
 

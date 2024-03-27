@@ -1,16 +1,20 @@
-package registry
+package config.registry
 
 import akka.actor.ActorSystem
 import com.google.inject.AbstractModule
 import controller.{PaymentController, TransactionController}
-import db.{AdjustmentRepository, InvoiceRepository, ReceiptRepository, RefundRepository}
 import net.codingwell.scalaguice.ScalaModule
 import service.{PaymentService, TransactionService}
-import com.google.inject.{Singleton}
+import com.google.inject.Singleton
+import config.DatabaseConfig
+import dao.repository.{AdjustmentRepository, InvoiceRepository, ReceiptRepository, RefundRepository}
+
+import scala.concurrent.ExecutionContext
 
 //CONFIGURE DEPENDENCIES
 class MainModule extends AbstractModule with ScalaModule {
   override def configure(): Unit = {
+    bind[DatabaseConfig].in[Singleton]
     bind[ActorSystem].toInstance(ActorSystem("main"))
     bind[RefundRepository].in[Singleton]
     bind[InvoiceRepository].in[Singleton]
@@ -20,6 +24,7 @@ class MainModule extends AbstractModule with ScalaModule {
     bind[TransactionService].in[Singleton]
     bind[PaymentController].in[Singleton]
     bind[TransactionController].in[Singleton]
+    bind[ExecutionContext].toInstance(scala.concurrent.ExecutionContext.Implicits.global)
 
   }
 }

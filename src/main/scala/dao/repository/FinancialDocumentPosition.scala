@@ -1,4 +1,4 @@
-package db
+package dao.repository
 
 import com.google.inject.Singleton
 

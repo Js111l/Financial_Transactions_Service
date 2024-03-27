@@ -4,7 +4,32 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f975022f-77bd-498e-bb1c-2d479c4d5f5d" name="Changes" comment="" />
+    <list default="true" id="f975022f-77bd-498e-bb1c-2d479c4d5f5d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/scala/dao/repository/AdjustmentRepository.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/dao/repository/InvoiceRepository.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/dao/repository/ReceiptRepository.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/dao/repository/RefundRepository.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/dao/table/InvoiceTable.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.sbt" beforeDir="false" afterPath="$PROJECT_DIR$/build.sbt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/Main.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/Main.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/controller/PaymentController.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/controller/PaymentController.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/controller/TransactionController.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/controller/TransactionController.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/db/AdjustmentRepository.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/db/BaseRepository.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/dao/repository/BaseCrudRepository.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/db/FinancialDocumentPosition.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/dao/repository/FinancialDocumentPosition.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/db/InvoiceRepository.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/db/ReceiptRepository.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/db/RefundRepository.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/entity/Adjustment.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/dao/entities/Adjustment.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/entity/BaseFinancialDocument.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/entity/Invoice.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/entity/Receipt.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/dao/entities/Receipt.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/entity/Refund.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/dao/entities/Refund.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/json/MyJsonProtocol.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/config/json/MyJsonProtocol.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/registry/MainModule.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/config/registry/MainModule.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/service/TransactionService.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/service/TransactionService.scala" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -30,8 +55,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Package Object" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -56,14 +81,17 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "C:/Users/Kuba/Desktop/Ecom/backend/services/FinancialTransactionsService/src/main/scala"
+    "last_opened_file_path": "C:/Users/Kuba/Desktop/Ecom/backend/services/FinancialTransactionsService"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Kuba\Desktop\Ecom\backend\services\FinancialTransactionsService" />
+      <recent name="C:\Users\Kuba\Desktop\Ecom\backend\services\FinancialTransactionsService\src\main" />
       <recent name="C:\Users\Kuba\Desktop\Ecom\backend\services\FinancialTransactionsService\src\main\scala" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="dao.table" />
       <recent name="db" />
       <recent name="controller" />
     </key>

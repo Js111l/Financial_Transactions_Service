@@ -1,5 +1,6 @@
-package json
+package config.json
 
+import dao.entities.Invoice
 import spray.json.{DefaultJsonProtocol, DeserializationException, JsString, JsValue, RootJsonFormat}
 
 import java.time.LocalDate
@@ -14,7 +15,9 @@ object MyJsonProtocol extends DefaultJsonProtocol {
       case _ => throw DeserializationException("Date expected")
     }
   }
+  implicit val invoiceFormat: RootJsonFormat[Invoice] = jsonFormat4(Invoice.apply)
 
-//implicit val productEntityFormat: RootJsonFormat[ProductEntity] = jsonFormat6(ProductEntity)
+
+  //implicit val productEntityFormat: RootJsonFormat[ProductEntity] = jsonFormat6(ProductEntity)
  // implicit val productEntityListFormat: RootJsonFormat[List[ProductEntity]] = listFormat(productEntityFormat)
 }

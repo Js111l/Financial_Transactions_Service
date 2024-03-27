@@ -9,11 +9,11 @@ import com.google.inject.Singleton
 @Singleton
 class PaymentController {
 
-  val routes: Route = pathPrefix("api" / "payments") {
-    path("products/active") {
-      Directives.get {
-        complete(StatusCodes.OK, "")
-      }
-    }
-  }
+//  val routes: Route = pathPrefix("api" / "payments") {
+//    path("products/active") {
+//      Directives.get {
+//        complete(StatusCodes.OK, "")
+//      }
+//    }
+//  }
 }
