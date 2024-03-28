@@ -30,11 +30,13 @@ class TransactionService @Inject()(invoiceRepository: InvoiceRepository,
     }
   }
 
-  def save2(financialDocument: Invoice): Unit = {
-    invoiceRepository.save2(financialDocument)
-  }
   def getAllInvoices(): Future[Seq[Invoice]] ={
     this.invoiceRepository.findAll2()
+  }
+
+
+  def save2(financialDocument: Invoice): Unit = {
+    invoiceRepository.save2(financialDocument)
   }
   def getActiveProducts(): Future[List[FinancialDocument]] = ???
 

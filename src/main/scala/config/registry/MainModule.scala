@@ -1,10 +1,12 @@
 package config.registry
 
+import actors.PaymentService
 import akka.actor.ActorSystem
 import com.google.inject.AbstractModule
 import controller.{PaymentController, TransactionController}
+//import controller.{PaymentController, TransactionController}
 import net.codingwell.scalaguice.ScalaModule
-import service.{PaymentService, TransactionService}
+import service.TransactionService
 import com.google.inject.Singleton
 import config.DatabaseConfig
 import dao.repository.{AdjustmentRepository, InvoiceRepository, ReceiptRepository, RefundRepository}

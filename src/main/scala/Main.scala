@@ -18,7 +18,7 @@ object Main extends App {
   implicit val executionContext: ExecutionContextExecutor = system.dispatcher
   val injector = Guice.createInjector(new MainModule())
 
-  val routes = injector.getInstance(classOf[TransactionController]).routes
+  val routes = injector.getInstance(classOf[TransactionController]).routes ~ injector.getInstance(classOf[PaymentController]).routes
 
   val taskScheduler = injector.getInstance(classOf[TaskScheduler])
   taskScheduler.startScheduler(system)
