@@ -4,7 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f975022f-77bd-498e-bb1c-2d479c4d5f5d" name="Changes" comment="" />
+    <list default="true" id="f975022f-77bd-498e-bb1c-2d479c4d5f5d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/Main.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/Main.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/actors/EmailService.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/actors/EmailService.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/actors/PaymentRequest.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/actors/model/PaymentRequest.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/actors/PaymentResponse.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/actors/model/PaymentResponse.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/actors/PaymentService.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/actors/PaymentService.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/controller/PaymentController.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/controller/PaymentController.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/enums/Currency.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/enums/PaymentType.java" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -30,9 +40,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Package Object" />
         <option value="Class" />
         <option value="Enum" />
+        <option value="Package Object" />
+        <option value="Scala Class" />
       </list>
     </option>
   </component>
@@ -53,13 +64,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Kuba/Desktop/Ecom/backend/services/FinancialTransactionsService&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "C:/Users/Kuba/Desktop/Ecom/backend/services/FinancialTransactionsService",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Kuba\Desktop\Ecom\backend\services\FinancialTransactionsService" />

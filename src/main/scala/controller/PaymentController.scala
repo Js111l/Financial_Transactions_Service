@@ -1,6 +1,7 @@
 package controller
 
-import actors.{PaymentRequest, PaymentResponse, PaymentService}
+import actors.model.{PaymentRequest, PaymentResponse}
+import actors.PaymentService
 import akka.actor.{ActorRef, ActorSystem, Props}
 import akka.http.scaladsl.model.StatusCodes
 import akka.http.scaladsl.server.Directives._
@@ -23,16 +24,15 @@ class PaymentController @Inject()(implicit val system: ActorSystem) extends Fail
   implicit val timeout: Timeout = Timeout(5.seconds)
   private val paymentActor: ActorRef = system.actorOf(Props[PaymentService])
 
-  //  implicit val paymentRequestUnmarshaller: FromEntityUnmarshaller[PaymentRequest] = {
-  //    implicitly[FromEntityUnmarshaller[PaymentRequest]]
-  //  }
+  implicit val paymentRequestUnmarshaller: FromEntityUnmarshaller[PaymentRequest] = {
+    implicitly[FromEntityUnmarshaller[PaymentRequest]]
+  }
 
   val routes: Route =
     pathPrefix("payments") {
       path("process") {
         post {
           entity(as[PaymentRequest]) { paymentRequest =>
-            // Send payment request to PaymentService actor
             val paymentResponseFuture: Future[Any] = (paymentActor ? paymentRequest).mapTo[Any]
             onSuccess(paymentResponseFuture) {
               case response: PaymentResponse =>
