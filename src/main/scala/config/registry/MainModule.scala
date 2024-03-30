@@ -1,6 +1,6 @@
 package config.registry
 
-import actors.PaymentService
+import actors.{FinancialDocumentActor, PaymentService}
 import akka.actor.ActorSystem
 import com.google.inject.AbstractModule
 import controller.{PaymentController, TransactionController}
@@ -9,7 +9,7 @@ import net.codingwell.scalaguice.ScalaModule
 import service.TransactionService
 import com.google.inject.Singleton
 import config.DatabaseConfig
-import dao.repository.{AdjustmentRepository, InvoiceRepository, ReceiptRepository, RefundRepository}
+import dao.repository.documents.{AdjustmentRepository, InvoiceRepository, ReceiptRepository, RefundRepository}
 
 import scala.concurrent.ExecutionContext
 
@@ -27,6 +27,6 @@ class MainModule extends AbstractModule with ScalaModule {
     bind[PaymentController].in[Singleton]
     bind[TransactionController].in[Singleton]
     bind[ExecutionContext].toInstance(scala.concurrent.ExecutionContext.Implicits.global)
-
+    bind[FinancialDocumentActor].in[Singleton]
   }
 }

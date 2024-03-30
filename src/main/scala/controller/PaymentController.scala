@@ -12,9 +12,13 @@ import akka.pattern.ask
 import akka.util.Timeout
 import com.google.inject.{Inject, Singleton}
 import de.heikoseeberger.akkahttpcirce.FailFastCirceSupport
+import enums.DocumentType
+import enums.DocumentType.DocumentType
+import io.circe.{Decoder, Encoder}
 
 import scala.concurrent.Future
 import scala.concurrent.duration.DurationInt
+import io.circe.syntax._
 
 @Singleton
 class PaymentController @Inject()(implicit val system: ActorSystem) extends FailFastCirceSupport {
@@ -27,7 +31,10 @@ class PaymentController @Inject()(implicit val system: ActorSystem) extends Fail
   implicit val paymentRequestUnmarshaller: FromEntityUnmarshaller[PaymentRequest] = {
     implicitly[FromEntityUnmarshaller[PaymentRequest]]
   }
-
+  implicit val documentTypeEncoder: Encoder[DocumentType] = Encoder.encodeString.contramap(_.toString)
+  implicit val documentTypeDecoder: Decoder[DocumentType] = Decoder.decodeString.emapTry { str =>
+    scala.util.Try(DocumentType.withName(str))
+  }
   val routes: Route =
     pathPrefix("payments") {
       path("process") {
@@ -36,7 +43,7 @@ class PaymentController @Inject()(implicit val system: ActorSystem) extends Fail
             val paymentResponseFuture: Future[Any] = (paymentActor ? paymentRequest).mapTo[Any]
             onSuccess(paymentResponseFuture) {
               case response: PaymentResponse =>
-                complete(StatusCodes.OK, response)
+                complete(StatusCodes.OK, response.asJson)
               case exception: Throwable =>
                 complete(StatusCodes.InternalServerError, s"An error occurred: ${exception.getMessage}")
             }

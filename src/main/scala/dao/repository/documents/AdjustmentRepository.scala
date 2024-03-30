@@ -1,13 +1,13 @@
-package dao.repository
+package dao.repository.documents
 
-import com.google.inject.{Inject, Singleton}
-import config.DatabaseConfig
+import com.google.inject.Singleton
 import dao.entities.Adjustment
+import dao.repository.BaseCrudRepository
 import dao.table.AdjustmentTable
 import slick.jdbc.GetResult
+import slick.jdbc.PostgresProfile.api._
 
 import scala.concurrent.Future
-import slick.jdbc.PostgresProfile.api._
 
 
 @Singleton

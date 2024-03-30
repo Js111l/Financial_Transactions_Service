@@ -3,7 +3,7 @@ package service
 import akka.http.scaladsl.marshalling.ToResponseMarshallable
 import com.google.inject.{Inject, Singleton}
 import dao.entities.{Adjustment, FinancialDocument, Invoice, Receipt, Refund}
-import dao.repository.{AdjustmentRepository, InvoiceRepository, ReceiptRepository, RefundRepository}
+import dao.repository.documents.{AdjustmentRepository, InvoiceRepository, ReceiptRepository, RefundRepository}
 
 import scala.concurrent.Future
 @Singleton

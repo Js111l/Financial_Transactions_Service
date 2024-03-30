@@ -1,4 +1,4 @@
-package dao.repository
+package dao.repository.documents
 
 import com.google.inject.Singleton
 

@@ -1,11 +1,12 @@
-package dao.repository
+package dao.repository.documents
 
 import com.google.inject.{Inject, Singleton}
 import dao.entities.Invoice
+import dao.repository.BaseCrudRepository
 import dao.table.InvoiceTable
 import slick.jdbc.GetResult
-import slick.lifted.TableQuery
 import slick.jdbc.PostgresProfile.api._
+import slick.lifted.TableQuery
 
 import scala.concurrent.{ExecutionContext, Future}
 

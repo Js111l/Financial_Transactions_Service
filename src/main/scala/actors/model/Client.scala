@@ -5,6 +5,7 @@ case class Client(id: Long,
                   lastName: String,
                   email: String,
                   phoneNumber: Long,
-                  address: Address) {
+                  address: Address
+                 ) {
 
 }

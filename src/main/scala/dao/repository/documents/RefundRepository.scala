@@ -1,11 +1,11 @@
-package dao.repository
+package dao.repository.documents
 
 import com.google.inject.Singleton
-import dao.entities.{Receipt, Refund}
-import dao.table.{ReceiptTable, RefundTable}
+import dao.entities.Refund
+import dao.repository.BaseCrudRepository
+import dao.table.RefundTable
 import slick.jdbc.GetResult
 import slick.lifted.TableQuery
-import slick.jdbc.PostgresProfile.api._
 
 import scala.concurrent.Future
 

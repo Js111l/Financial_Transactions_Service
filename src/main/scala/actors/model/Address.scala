@@ -1,7 +1,6 @@
 package actors.model
 
-case class Address(id: Long,
-                   city: String,
+case class Address(city: String,
                    street: String,
                    streetNumber: String,
                    postalCode: String,
