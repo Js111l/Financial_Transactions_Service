@@ -4,21 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f975022f-77bd-498e-bb1c-2d479c4d5f5d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/actors/PaymentService.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/actors/PaymentService.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/actors/model/Address.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/actors/model/Address.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/actors/model/Client.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/actors/model/Client.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/actors/model/PaymentResponse.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/actors/model/PaymentResponse.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/config/registry/MainModule.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/config/registry/MainModule.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/controller/PaymentController.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/controller/PaymentController.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/dao/repository/AdjustmentRepository.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/dao/repository/documents/AdjustmentRepository.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/dao/repository/FinancialDocumentPosition.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/dao/repository/documents/FinancialDocumentPosition.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/dao/repository/InvoiceRepository.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/dao/repository/documents/InvoiceRepository.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/dao/repository/ReceiptRepository.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/dao/repository/documents/ReceiptRepository.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/dao/repository/RefundRepository.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/dao/repository/documents/RefundRepository.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/service/TransactionService.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/service/TransactionService.scala" afterDir="false" />
-    </list>
+    <list default="true" id="f975022f-77bd-498e-bb1c-2d479c4d5f5d" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -75,7 +61,8 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "C:/Users/Kuba/Desktop/GraphPTGame-main",
+    "git-widget-placeholder": "basic-template",
+    "last_opened_file_path": "C:/Users/Kuba/Desktop/Nowy folder (3)",
     "settings.editor.selected.configurable": "preferences.lookFeel"
   }
 }]]></component>
