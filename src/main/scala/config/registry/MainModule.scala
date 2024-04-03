@@ -1,10 +1,11 @@
 package config.registry
 
+import actors.payment.{BankTransferPaymentHandler, CreditCardPaymentHandler, PaymentHandler, PaymentHandlerDispatcher}
 import actors.{FinancialDocumentActor, PaymentService}
 import akka.actor.ActorSystem
 import com.google.inject.AbstractModule
+import com.google.inject.multibindings.Multibinder
 import controller.{PaymentController, TransactionController}
-//import controller.{PaymentController, TransactionController}
 import net.codingwell.scalaguice.ScalaModule
 import service.TransactionService
 import com.google.inject.Singleton
@@ -28,5 +29,11 @@ class MainModule extends AbstractModule with ScalaModule {
     bind[TransactionController].in[Singleton]
     bind[ExecutionContext].toInstance(scala.concurrent.ExecutionContext.Implicits.global)
     bind[FinancialDocumentActor].in[Singleton]
+
+    val multibinder = Multibinder.newSetBinder(binder(), classOf[PaymentHandler])
+    multibinder.addBinding().to(classOf[BankTransferPaymentHandler])
+    multibinder.addBinding().to(classOf[CreditCardPaymentHandler])
+
+    bind[PaymentHandlerDispatcher].in[Singleton]
   }
 }

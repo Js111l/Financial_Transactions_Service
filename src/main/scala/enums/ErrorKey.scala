@@ -1,0 +1,5 @@
+package enums
+
+object ErrorKey {
+
+}

@@ -21,11 +21,12 @@ import scala.concurrent.duration.DurationInt
 import io.circe.syntax._
 
 @Singleton
-class PaymentController @Inject()(implicit val system: ActorSystem) extends FailFastCirceSupport {
+class PaymentController extends FailFastCirceSupport {
 
   import io.circe.generic.auto._
 
   implicit val timeout: Timeout = Timeout(5.seconds)
+  implicit val system: ActorSystem = ActorSystem("payment-controller")
   private val paymentActor: ActorRef = system.actorOf(Props[PaymentService])
 
 //  implicit val paymentRequestUnmarshaller: FromEntityUnmarshaller[PaymentRequest] = {
