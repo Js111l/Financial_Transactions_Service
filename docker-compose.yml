@@ -7,4 +7,4 @@ services:
       POSTGRES_PASSWORD: password
       POSTGRES_DB: transaction_db
     ports:
-      - 5434:5432
+      - 5432:5432

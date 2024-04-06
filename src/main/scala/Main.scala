@@ -12,11 +12,11 @@ object Main extends App {
   implicit val system: ActorSystem = ActorSystem("main")
   implicit val executionContext: ExecutionContextExecutor = system.dispatcher
   val injector = Guice.createInjector(new MainModule())
-
-  val routes = injector.getInstance(classOf[TransactionController]).routes ~ injector.getInstance(classOf[PaymentController]).routes
-
   val taskScheduler = injector.getInstance(classOf[TaskScheduler])
   taskScheduler.startScheduler(system)
 
-  Http().newServerAt("localhost", 9091).bind(routes)
+
+  val routes = injector.getInstance(classOf[TransactionController]).routes ~ injector.getInstance(classOf[PaymentController]).routes
+  val (host, port) = ("localhost", 9091)
+  Http().newServerAt(host,port).bind(routes)
 }

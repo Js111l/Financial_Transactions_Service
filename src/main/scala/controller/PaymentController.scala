@@ -20,18 +20,17 @@ import scala.concurrent.Future
 import scala.concurrent.duration.DurationInt
 import io.circe.syntax._
 
+import scala.concurrent.impl.Promise
+import scala.util.{Failure, Success}
+
 @Singleton
 class PaymentController extends FailFastCirceSupport {
 
   import io.circe.generic.auto._
 
-  implicit val timeout: Timeout = Timeout(5.seconds)
   implicit val system: ActorSystem = ActorSystem("payment-controller")
   private val paymentActor: ActorRef = system.actorOf(Props[PaymentService])
 
-//  implicit val paymentRequestUnmarshaller: FromEntityUnmarshaller[PaymentRequest] = {
-//    implicitly[FromEntityUnmarshaller[PaymentRequest]]
-//  }
   implicit val documentTypeEncoder: Encoder[DocumentType] = Encoder.encodeString.contramap(_.toString)
   implicit val documentTypeDecoder: Decoder[DocumentType] = Decoder.decodeString.emapTry { str =>
     scala.util.Try(DocumentType.withName(str))
@@ -41,19 +40,22 @@ class PaymentController extends FailFastCirceSupport {
     scala.util.Try(PaymentType.withName(str))
   }
 
-
+  implicit val timeout: Timeout = Timeout(5.seconds)
   val routes: Route =
     pathPrefix("payments") {
       path("process") {
         post {
           entity(as[PaymentRequest]) { paymentRequest =>
-            val paymentResponseFuture: Future[Any] = (paymentActor ? paymentRequest).mapTo[Any]
-            onSuccess(paymentResponseFuture) {
-              case response: PaymentResponse =>
-                complete(StatusCodes.OK, response.asJson)
-              case exception: Throwable =>
+            val paymentResponseFuture: Future[PaymentResponse] = (paymentActor ? paymentRequest).mapTo[PaymentResponse]
+            onComplete(paymentResponseFuture) {
+              case Failure(exception) => {
                 complete(StatusCodes.InternalServerError, s"An error occurred: ${exception.getMessage}")
+              }
+              case Success(value) => {
+                complete(StatusCodes.OK, value.asJson)
+              }
             }
+
           }
         }
       }
