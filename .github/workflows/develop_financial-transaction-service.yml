@@ -51,7 +51,7 @@ jobs:
       - name: Download artifact from build job
         uses: actions/download-artifact@v3
         with:
-          name: java-app
+          name:  scala-app
 
       - name: Login to Azure
         uses: azure/login@v1
