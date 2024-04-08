@@ -1,4 +1,4 @@
-FROM hseeberger/scala-sbt:11.0.12_1.5.5_2.13.8
+FROM hseeberger/scala-sbt:11.0.5_1.3.6_2.13.1
 WORKDIR /app
 COPY . /app
 RUN sbt assembly
