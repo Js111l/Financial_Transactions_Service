@@ -35,9 +35,6 @@ jobs:
       - name: Build with SBT
         run: sbt clean assembly
 
-      - name: Build Docker image
-        run: docker build -t financial-transaction-service .
-
       - name: Login to Azure
         uses: azure/login@v1
         with:
