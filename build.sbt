@@ -1,13 +1,17 @@
+import sbt.Keys.mainClass
+
 ThisBuild / version := "0.1.0-SNAPSHOT"
 
 ThisBuild / scalaVersion := "2.13.13"
 
 lazy val root = (project in file("."))
   .settings(
-    name := "FinancialTransactionsService"
+    name := "FinancialTransactionsService",
+      mainClass in Compile := Some("ecom.Main")
   )
 assemblyMergeStrategy in assembly := {
     case PathList("META-INF", xs @ _*) => MergeStrategy.discard
+    case "reference.conf" => MergeStrategy.concat
     case x => MergeStrategy.first
 }
 
