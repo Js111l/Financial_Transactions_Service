@@ -19,6 +19,6 @@ object Main extends App {
 
 
   val routes = injector.getInstance(classOf[TransactionController]).routes ~ injector.getInstance(classOf[PaymentController]).routes
-  val (host, port) = ("localhost", 9091)
+  val (host, port) = ("0.0.0.0",80 )
   Http().newServerAt(host,port).bind(routes)
 }
