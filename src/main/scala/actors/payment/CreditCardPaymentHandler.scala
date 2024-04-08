@@ -1,3 +1,5 @@
+package actors.payment
+
 
 import actors.model.{PaymentRequest, PaymentResponse}
 import actors.payment.PaymentHandler

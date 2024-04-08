@@ -1,7 +1,7 @@
 package controller
 
 import actors.model.{PaymentRequest, PaymentResponse}
-import actors.PaymentService
+import actors.payment.PaymentService
 import akka.actor.{ActorRef, ActorSystem, Props}
 import akka.http.scaladsl.model.StatusCodes
 import akka.http.scaladsl.server.Directives._

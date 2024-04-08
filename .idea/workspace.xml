@@ -4,15 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f975022f-77bd-498e-bb1c-2d479c4d5f5d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.conf" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.conf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/Main.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/Main.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/actors/PaymentService.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/actors/PaymentService.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/controller/PaymentController.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/controller/PaymentController.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/controller/TransactionController.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/controller/TransactionController.scala" afterDir="false" />
-    </list>
+    <list default="true" id="f975022f-77bd-498e-bb1c-2d479c4d5f5d" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -69,15 +61,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "basic-template",
-    "last_opened_file_path": "C:/Users/Kuba/Desktop/Ecom/backend/services/FinancialTransactionsService",
-    "settings.editor.selected.configurable": "preferences.lookFeel"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;basic-template&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Kuba/Desktop/Ecom/backend/services/FinancialTransactionsService&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Kuba\Desktop\Ecom\backend\services\FinancialTransactionsService" />

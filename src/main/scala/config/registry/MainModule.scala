@@ -1,7 +1,7 @@
 package config.registry
 
-import actors.payment.{BankTransferPaymentHandler, CreditCardPaymentHandler, PaymentHandler, PaymentHandlerDispatcher}
-import actors.{FinancialDocumentActor, PaymentService}
+import actors.payment.{BankTransferPaymentHandler, CreditCardPaymentHandler, PaymentHandler, PaymentHandlerDispatcher, PaymentService}
+import actors.FinancialDocumentActor
 import akka.actor.ActorSystem
 import com.google.inject.AbstractModule
 import com.google.inject.multibindings.Multibinder
