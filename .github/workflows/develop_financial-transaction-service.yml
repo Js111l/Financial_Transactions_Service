@@ -30,7 +30,7 @@ jobs:
             ${{ runner.os }}-sbt-
             
       - name: Build with SBT
-        run: sbt clean compile package
+        run: sbt clean assembly
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
