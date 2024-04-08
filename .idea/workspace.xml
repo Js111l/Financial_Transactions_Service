@@ -5,62 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f975022f-77bd-498e-bb1c-2d479c4d5f5d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.sbt" beforeDir="false" afterPath="$PROJECT_DIR$/build.sbt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.conf" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.conf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/Main.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ecom/Main.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/actors/EmailService.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ecom/actors/EmailService.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/actors/FinancialDocumentActor.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ecom/actors/FinancialDocumentActor.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/actors/StripeWebhookActor.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ecom/actors/StripeWebhookActor.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/actors/model/Address.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ecom/actors/model/Address.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/actors/model/Client.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ecom/actors/model/Client.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/actors/model/PaymentRequest.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ecom/actors/model/PaymentRequest.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/actors/model/PaymentResponse.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ecom/actors/model/PaymentResponse.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/actors/model/Product.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ecom/actors/model/Product.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/actors/payment/BankTransferPaymentHandler.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ecom/actors/payment/BankTransferPaymentHandler.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/actors/payment/CreditCardPaymentHandler.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ecom/actors/payment/CreditCardPaymentHandler.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/actors/payment/PaymentHandler.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ecom/actors/payment/PaymentHandler.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/actors/payment/PaymentHandlerDispatcher.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ecom/actors/payment/PaymentHandlerDispatcher.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/actors/payment/PaymentService.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ecom/actors/payment/PaymentService.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/config/DatabaseConfig.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ecom/config/DatabaseConfig.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/config/registry/MainModule.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ecom/config/registry/MainModule.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/controller/ApiErrorHandler.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ecom/controller/ApiErrorHandler.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/controller/BaseController.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ecom/controller/BaseController.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/controller/PaymentController.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ecom/controller/PaymentController.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/controller/TransactionController.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ecom/controller/TransactionController.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/dao/entities/Adjustment.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ecom/dao/entities/Adjustment.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/dao/entities/FinancialDocument.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ecom/dao/entities/FinancialDocument.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/dao/entities/FinancialDocumentEntry.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ecom/dao/entities/FinancialDocumentEntry.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/dao/entities/Invoice.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ecom/dao/entities/Invoice.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/dao/entities/Product.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ecom/dao/entities/Product.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/dao/entities/Receipt.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ecom/dao/entities/Receipt.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/dao/entities/Refund.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ecom/dao/entities/Refund.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/dao/repository/BaseCrudRepository.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ecom/dao/repository/BaseCrudRepository.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/dao/repository/ClientRepository.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ecom/dao/repository/ClientRepository.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/dao/repository/documents/AdjustmentRepository.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ecom/dao/repository/documents/AdjustmentRepository.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/dao/repository/documents/FinancialDocumentPosition.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ecom/dao/repository/documents/FinancialDocumentPosition.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/dao/repository/documents/InvoiceRepository.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ecom/dao/repository/documents/InvoiceRepository.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/dao/repository/documents/ReceiptRepository.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ecom/dao/repository/documents/ReceiptRepository.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/dao/repository/documents/RefundRepository.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ecom/dao/repository/documents/RefundRepository.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/dao/table/AdjustmentTable.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ecom/dao/table/AdjustmentTable.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/dao/table/BaseTable.scala" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/dao/table/ClientTable.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ecom/dao/table/ClientTable.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/dao/table/InvoiceTable.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ecom/dao/table/InvoiceTable.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/dao/table/ReceiptTable.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ecom/dao/table/ReceiptTable.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/dao/table/RefundTable.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ecom/dao/table/RefundTable.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/enums/Currency.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ecom/enums/Currency.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/enums/DocumentType.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ecom/enums/DocumentType.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/enums/ErrorKey.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ecom/enums/ErrorKey.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/enums/PaymentType.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ecom/enums/PaymentType.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/enums/VatRate.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ecom/enums/VatRate.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/exceptions/LogicalException.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ecom/exceptions/LogicalException.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/service/AddressService.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ecom/service/AddressService.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/service/BaseService.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ecom/service/BaseService.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/service/ClientService.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ecom/service/ClientService.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/service/TransactionService.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ecom/service/TransactionService.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/tasks/TaskActor.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ecom/tasks/TaskActor.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/tasks/TaskScheduler.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ecom/tasks/TaskScheduler.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/utils/FinancialDocumentUtil.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ecom/utils/FinancialDocumentUtil.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dockerfile" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -163,9 +108,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
+      <deployment type="docker-compose.yml" />
+      <method v="2" />
+    </configuration>
+    <configuration name="docker-compose.yml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="sourceFilePath" value="docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.ecom.Main" />
+        <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
