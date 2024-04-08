@@ -30,13 +30,13 @@ jobs:
             ${{ runner.os }}-sbt-
             
       - name: Build with SBT
-        run: sbt clean compile stage
+        run: sbt clean compile package
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
           name: scala-app
-          path: '${{ github.workspace }}/target/universal/*.zip'
+          path: '${{ github.workspace }}/target/scala-2.13/*.jar'
 
   deploy:
     runs-on: ubuntu-latest
