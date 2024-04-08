@@ -1,7 +1,4 @@
-# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
-# More GitHub Actions for Azure: https://github.com/Azure/actions
-
-name: Build and deploy JAR app to Azure Web App - financial-transaction-service
+name: Build and deploy Dockerized app to Azure Web App - financial-transaction-service
 
 on:
   push:
@@ -10,11 +7,17 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
+    environment:
+      name: 'Production'
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+    permissions:
+      id-token: write #This is required for requesting the JWT
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
       - name: Set up Java version
         uses: actions/setup-java@v1
@@ -28,30 +31,12 @@ jobs:
           key: ${{ runner.os }}-sbt-${{ hashFiles('**/*.sbt') }}-${{ hashFiles('**/project/build.properties') }}
           restore-keys: |
             ${{ runner.os }}-sbt-
-            
+
       - name: Build with SBT
         run: sbt clean assembly
 
-      - name: Upload artifact for deployment job
-        uses: actions/upload-artifact@v3
-        with:
-          name: scala-app
-          path: '${{ github.workspace }}/target/scala-2.13/*.jar'
-
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    environment:
-      name: 'Production'
-      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
-    permissions:
-      id-token: write #This is required for requesting the JWT
-
-    steps:
-      - name: Download artifact from build job
-        uses: actions/download-artifact@v3
-        with:
-          name:  scala-app
+      - name: Build Docker image
+        run: docker build -t financial-transaction-service .
 
       - name: Login to Azure
         uses: azure/login@v1
@@ -66,4 +51,4 @@ jobs:
         with:
           app-name: 'financial-transaction-service'
           slot-name: 'Production'
-          package: '*.jar'
+          images: 'financial-transaction-service'
