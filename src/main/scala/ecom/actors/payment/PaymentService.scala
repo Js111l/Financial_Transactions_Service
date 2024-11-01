@@ -1,13 +1,14 @@
 package ecom.actors.payment
 
 import akka.actor.{Actor, ActorLogging, ActorSystem, Props}
-import com.google.inject.Guice
+import com.google.inject.{Guice, Singleton}
 import ecom.actors.EmailService
 import ecom.actors.model.{PaymentRequest, PaymentResponse}
 
 import scala.concurrent.ExecutionContext
 import scala.util.{Failure, Success}
 
+@Singleton
 class PaymentService extends Actor with ActorLogging {
 
   protected implicit val executionContext: ExecutionContext = ExecutionContext.global

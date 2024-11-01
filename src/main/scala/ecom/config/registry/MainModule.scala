@@ -5,17 +5,20 @@ import com.google.inject.AbstractModule
 import com.google.inject.multibindings.Multibinder
 import net.codingwell.scalaguice.ScalaModule
 import com.google.inject.Singleton
+import com.stripe.Stripe
 import ecom.actors.FinancialDocumentActor
 import ecom.actors.payment.{BankTransferPaymentHandler, CreditCardPaymentHandler, PaymentHandler, PaymentHandlerDispatcher, PaymentService}
-import ecom.config.DatabaseConfig
-import ecom.controller.{PaymentController, TransactionController}
+import ecom.config.{AppConfig, DatabaseConfig}
+import ecom.controller.{OrderController, PaymentController}
 import ecom.dao.repository.documents.{AdjustmentRepository, InvoiceRepository, ReceiptRepository, RefundRepository}
-import ecom.service.TransactionService
+import ecom.service.{OrderService, TransactionService}
 
 import scala.concurrent.ExecutionContext
 
 //CONFIGURE DEPENDENCIES
 class MainModule extends AbstractModule with ScalaModule {
+  val appConfig = new AppConfig();
+
   override def configure(): Unit = {
     bind[DatabaseConfig].in[Singleton]
     bind[ActorSystem].toInstance(ActorSystem("main"))
@@ -26,7 +29,8 @@ class MainModule extends AbstractModule with ScalaModule {
     bind[PaymentService].in[Singleton]
     bind[TransactionService].in[Singleton]
     bind[PaymentController].in[Singleton]
-    bind[TransactionController].in[Singleton]
+    bind[OrderService].in[Singleton]
+    //bind[TransactionController].in[Singleton]
     bind[ExecutionContext].toInstance(scala.concurrent.ExecutionContext.Implicits.global)
     bind[FinancialDocumentActor].in[Singleton]
 
@@ -35,5 +39,12 @@ class MainModule extends AbstractModule with ScalaModule {
     multibinder.addBinding().to(classOf[CreditCardPaymentHandler])
 
     bind[PaymentHandlerDispatcher].in[Singleton]
+    bind[OrderController].in[Singleton]
+
+    //FLYWAY
+    FlywayConfig.getFlyway().migrate()
+
+    //STRIPE
+    Stripe.apiKey = this.appConfig.getApiKey()
   }
 }

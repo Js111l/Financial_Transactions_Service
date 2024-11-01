@@ -19,9 +19,13 @@ class AdjustmentRepository() extends BaseCrudRepository[Adjustment] {
 
   override def findById(id: Long): Future[Option[Adjustment]] = ???
 
-  override def save(entity: Adjustment): Future[Adjustment] ={
+  override def save(entity: Adjustment): Future[Adjustment] = {
     val insertAction = (adjustments returning adjustments) += entity
     db.run(insertAction)
+  }
+
+  def getSaveAction(entity: Adjustment): DBIO[Adjustment] = {
+    (adjustments returning adjustments) += entity
   }
 
   override def saveAll(entities: List[Adjustment]): Future[List[Adjustment]] = ???
@@ -29,4 +33,7 @@ class AdjustmentRepository() extends BaseCrudRepository[Adjustment] {
   override def delete(id: Long): Future[Boolean] = ???
 
   override def deleteAll(): Future[Boolean] = ???
+  def runTransactionally(): Unit = {
+
+  }
 }

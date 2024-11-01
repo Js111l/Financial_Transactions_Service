@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f975022f-77bd-498e-bb1c-2d479c4d5f5d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,8 +34,8 @@
       <list>
         <option value="Class" />
         <option value="Enum" />
-        <option value="Scala Class" />
         <option value="Package Object" />
+        <option value="Scala Class" />
       </list>
     </option>
   </component>
@@ -45,6 +45,13 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="jar://$USER_HOME$/AppData/Local/Coursier/cache/v1/https/repo1.maven.org/maven2/com/google/inject/guice/7.0.0/guice-7.0.0-sources.jar!/com/google/inject/internal/InjectorImpl.java" root0="SKIP_INSPECTION" />
     <setting file="jar://$USER_HOME$/AppData/Local/Coursier/cache/v1/https/repo1.maven.org/maven2/com/typesafe/akka/akka-stream_2.13/2.8.5/akka-stream_2.13-2.8.5-sources.jar!/akka/stream/SslTlsOptions.scala" root0="SKIP_INSPECTION" />
+  </component>
+  <component name="MavenRunner">
+    <option name="environmentProperties">
+      <map>
+        <entry key="STRIPE_API_KEY" value="${STRIPE_API_KEY}" />
+      </map>
+    </option>
   </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
@@ -65,11 +72,13 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;Application.ecom.Main.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;basic-template&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Kuba/Desktop/Ecom/backend/services/FinancialTransactionsService&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
+    &quot;git-widget-placeholder&quot;: &quot;develop&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/jakub-wiercz/Desktop/gateway&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.runner&quot;
   }
 }</component>
   <component name="RecentsManager">
@@ -79,6 +88,7 @@
       <recent name="C:\Users\Kuba\Desktop\Ecom\backend\services\FinancialTransactionsService\src\main\scala" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/scala/ecom/controller" />
       <recent name="C:\Users\Kuba\Desktop\Ecom\backend\services\FinancialTransactionsService\project" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -96,6 +106,9 @@
       </method>
     </configuration>
     <configuration name="ecom.Main" type="Application" factoryName="Application" temporary="true">
+      <envs>
+        <env name="STRIPE_API_KEY" value="${STRIPE_API_KEY}" />
+      </envs>
       <option name="MAIN_CLASS_NAME" value="ecom.Main" />
       <module name="FinancialTransactionsService" />
       <extension name="coverage">
@@ -109,7 +122,9 @@
       </method>
     </configuration>
     <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
-      <deployment type="docker-compose.yml" />
+      <deployment type="docker-compose.yml">
+        <settings />
+      </deployment>
       <method v="2" />
     </configuration>
     <configuration name="docker-compose.yml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
@@ -120,6 +135,11 @@
       </deployment>
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Application.Main" />
+      <item itemvalue="Application.ecom.Main" />
+      <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.ecom.Main" />
@@ -127,6 +147,9 @@
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="ScalaProjectSettings">
+    <option name="migrateConfigurationsNotificationShown" value="true" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -138,5 +161,16 @@
       <updated>1711121197820</updated>
     </task>
     <servers />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="scala-line">
+          <url>file://$PROJECT_DIR$/src/main/scala/ecom/service/TransactionService.scala</url>
+          <line>104</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

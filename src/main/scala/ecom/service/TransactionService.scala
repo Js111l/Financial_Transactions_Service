@@ -1,19 +1,40 @@
 package ecom.service
 
-import akka.http.scaladsl.marshalling.ToResponseMarshallable
 import com.google.inject.{Inject, Singleton}
-import ecom.dao.entities.{Adjustment, FinancialDocument, Invoice, Receipt, Refund}
+import com.stripe.model.PaymentIntent
+import com.stripe.param.PaymentIntentCreateParams
+import ecom.actors.model.{PaymentIntentRequestModel, TokenResponse}
+import ecom.dao.entities.{Adjustment, FinancialDocument, Invoice, Order, OrderProduct, PaymentIntentEntity, Receipt, Refund}
+import ecom.dao.repository.UserOrderRepository
 import ecom.dao.repository.documents.{AdjustmentRepository, InvoiceRepository, ReceiptRepository, RefundRepository}
 
+import java.time.LocalDateTime
 import scala.concurrent.Future
+import scala.util.{Failure, Success}
+import slick.jdbc.PostgresProfile.api._
+
+import java.util.UUID
+
+// JESLI USER INICJUCJE PLATNOSC TO TAKIE FLOW:
+
+//1. Zapisuje sie order, potem ten intent itp., wszystko po staremu.
+//2. Musi byc wygenerowany token do sesji platnosci, na 10 minut,
+// musi byc unikalny i scisle powiazny z obecna sesja.
+//3. user jesli ma poprawny token itp. to moze byc na tym widoku platnosci i zainicjować zapłatę
+//4. Otherwise, wywali błąd i nie wpuści go.
+//5. Klient bedzie mial mozliwosc ponowienia zakpupu, jezeli produkt bedzie dostepny itp.
+//   Wtedy bedzie takie flow, ze generuje sie token do ponownej zapłaty, powiazany z sesja i payment intentem
+//6. wszystkie tokeny w http only cookie.
+
+
 @Singleton
 class TransactionService @Inject()(invoiceRepository: InvoiceRepository,
-                         receiptRepository: ReceiptRepository,
-                         refundRepository: RefundRepository,
-                         adjustmentRepository: AdjustmentRepository) {
+                                   receiptRepository: ReceiptRepository,
+                                   refundRepository: RefundRepository,
+                                   adjustmentRepository: AdjustmentRepository,
+                                   orderRepository: UserOrderRepository) extends BaseService {
 
   def saveTransaction(financialDoc: FinancialDocument): Future[FinancialDocument] = {
-
     financialDoc match {
       case invoice: Invoice =>
         invoiceRepository.save(invoice)
@@ -26,38 +47,108 @@ class TransactionService @Inject()(invoiceRepository: InvoiceRepository,
       case adjustment: Adjustment => {
         adjustmentRepository.save(adjustment)
       }
-      case _ => Future.failed(new IllegalArgumentException("Unsupported FinancialDocument type"))
+      case _ =>
+        Future.failed(new IllegalArgumentException("Unsupported FinancialDocument type"))
     }
+
   }
 
-  def getAllInvoices(): Future[Seq[Invoice]] ={
+  def getAllInvoices(): Future[Seq[Invoice]] = {
     this.invoiceRepository.findAll2()
   }
 
 
-  def save2(financialDocument: Invoice): Unit = {
-    invoiceRepository.save2(financialDocument)
+  def getIdSecretTupleAndSaveNewOrder(intentModel: PaymentIntentRequestModel): Future[(Long, String, String)] = {
+    this.createUserOrder(intentModel)
+      .transformWith {
+        case Failure(ex) =>
+          val exMessage = ex.getMessage
+          logger.warn(s"Error occurred during saving new order: $exMessage")
+          Future.failed(new IllegalArgumentException("Order save failed", ex))
+        case Success(orderId) =>
+          this.getPaymentIntentIdSecretTuple(intentModel, orderId).map((tuple) => {
+            (orderId, tuple._1, tuple._2)
+          }).recoverWith {
+            case ex: Throwable =>
+              val exMessage = ex.getMessage
+              logger.warn(s"Error occurred during fetching client secret for payment intent: $exMessage")
+              Future.failed(new IllegalArgumentException("Failed to get secret", ex))
+          }
+      }
   }
-  def getActiveProducts(): Future[List[FinancialDocument]] = ???
 
-  def getMinStockThreshold(id: Int): ToResponseMarshallable = ???
+  def getSecretByUUID(uuid: String): Future[TokenResponse] = {
+    val action = (orderRepository.getClientSecretByUUID(uuid)).transactionally
+    db.run(action).map { x =>
+      TokenResponse(x._1, x._2, x._3)
+    }
+  }
 
-  def getProductsByCategory(): ToResponseMarshallable = ???
+  private def setupPaymentMethods(builder: PaymentIntentCreateParams.Builder): Unit = {
+    val methods = this.appConfig.getPaymentMethods();
+    methods.forEach {
+      x => {
+        builder.addPaymentMethodType(x.unwrapped().toString) //dodaj metody platnosci z configa
+      }
+    }
+  }
 
-  def updateProductStock(id: Int, requestBody: String): ToResponseMarshallable = ???
+
+  private def getPaymentIntentEntity(intent: PaymentIntent, orderId: Long): PaymentIntentEntity = {
+    PaymentIntentEntity(
+      0,
+      UUID.randomUUID().toString, //TU POWINIEN BYC UUID, W HEADERZE PRZEKAZ
+      intent.getClientSecret,
+      orderId
+    )
+  }
+
+  private def getPaymentIntentIdSecretTuple(intentModel: PaymentIntentRequestModel, orderId: Long): Future[(String, String)] = {
+    val paymentIntentCreateParamsBuilder = PaymentIntentCreateParams
+      .builder()
+      .setCurrency("eur")
+      .setAmount(intentModel.amount.longValue)
+
+    this.setupPaymentMethods(paymentIntentCreateParamsBuilder)
+    val intent = PaymentIntent.create(paymentIntentCreateParamsBuilder.build())
+
+    val entity = this.getPaymentIntentEntity(intent, orderId)
+    val action = orderRepository.savePaymentIntent(entity).transactionally
+    db.run(action).map(_ => (entity.uuid, intent.getClientSecret))
+  }
 
 
-  def getOutOfStockProducts(): ToResponseMarshallable = ???
+  private def validateUser(): Unit = {
+    Thread.sleep(5_000)
+    if (true) {
+      throw new IllegalArgumentException("Exception!")
+    }
+  }
 
-  def getTopSellingProducts(): ToResponseMarshallable = ???
+  private def createNewOrder(intentRequestModel: PaymentIntentRequestModel): Order = {
+    Order(
+      0,
+      intentRequestModel.client.id,
+      LocalDateTime.now(),
+      "",
+      "",
+      "",
+      ""
+    )
+  }
 
-  def getTotalStock(): ToResponseMarshallable = ???
-
-  def getAverageStock(): ToResponseMarshallable = ???
-
-  def getAllProductsWithLowStock(): ToResponseMarshallable = ???
-
-  def getProductStock(id: Int): _root_.akka.http.scaladsl.marshalling.ToResponseMarshallable = ???
-
+  private def createUserOrder(intentRequestModel: PaymentIntentRequestModel): Future[Long] = {
+    val action =
+      (for {
+        orderId <- orderRepository.save(this.createNewOrder(intentRequestModel))
+        //        orders = {
+        //          this.validateUser() test exceptions
+        //          List()
+        //        }
+        products = intentRequestModel.products.map { x => OrderProduct(0, x.id, orderId) }
+        _ <- orderRepository.saveProductOrders(products)
+      } yield (orderId)).transactionally
+    db.run(action)
+  }
 
 }

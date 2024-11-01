@@ -3,8 +3,7 @@ package ecom.dao.repository
 import scala.concurrent.Future
 import slick.jdbc.PostgresProfile.api._
 
-trait BaseCrudRepository[T] {
-  protected val db = Database.forConfig("mydb")
+trait BaseCrudRepository[T] extends BaseRepository {
 
   def findAll(): Future[List[T]]
 

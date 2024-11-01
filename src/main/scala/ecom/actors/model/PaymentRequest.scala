@@ -9,8 +9,8 @@ case class PaymentRequest(amount: Long,
                           client: Client,
                           stripeToken: String,
                           //items: Seq[Product],
-                          shippingAddress: Address,
-                          billingAddress: Address,
+                          //shippingAddress: Address,
+                          //billingAddress: Address,
                           orderId: String,
                           paymentType: PaymentType
                           //paymentDate: LocalDateTime
