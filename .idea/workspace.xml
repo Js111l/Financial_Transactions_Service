@@ -6,6 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="f975022f-77bd-498e-bb1c-2d479c4d5f5d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.sbt" beforeDir="false" afterPath="$PROJECT_DIR$/build.sbt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/ecom/Main.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ecom/Main.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/ecom/actors/model/PaymentIntentRequestModel.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ecom/actors/model/PaymentIntentRequestModel.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/ecom/config/registry/JsonFormattersConfig.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ecom/config/registry/JsonFormattersConfig.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/ecom/controller/OrderController.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ecom/controller/OrderController.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/ecom/controller/PaymentController.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ecom/controller/PaymentController.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/ecom/service/TransactionService.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ecom/service/TransactionService.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,10 +39,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Enum" />
         <option value="Package Object" />
         <option value="Scala Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -70,17 +77,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.ecom.Main.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;develop&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/jakub-wiercz/Desktop/gateway&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.runner&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.ecom.Main.executor": "Debug",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "develop",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/home/jakub-wiercz/Desktop/gateway",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.runner"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Kuba\Desktop\Ecom\backend\services\FinancialTransactionsService" />
@@ -166,9 +173,9 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="scala-line">
-          <url>file://$PROJECT_DIR$/src/main/scala/ecom/service/TransactionService.scala</url>
-          <line>104</line>
-          <option name="timeStamp" value="3" />
+          <url>file://$PROJECT_DIR$/src/main/scala/ecom/Main.scala</url>
+          <line>40</line>
+          <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

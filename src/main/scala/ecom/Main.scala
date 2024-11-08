@@ -35,7 +35,15 @@ object Main extends App {
       .withAllowCredentials(true)
       .withAllowedMethods(Seq(GET, POST, PUT, DELETE, OPTIONS, PATCH))
       .withAllowedHeaders(HttpHeaderRange.apply("Content-Type", "Authorization")) // Ensure proper header configuration
-  ) {
-    routes
+  )
+  {
+   // optionalHeaderValueByName("Authorization") { jwtToken =>
+     // authorizeRequest(jwtToken)
+      routes
+   // }
   })
+
+  private def authorizeRequest(jwtToken: Option[String]) = {
+    println(jwtToken+"2137")
+  }
 }

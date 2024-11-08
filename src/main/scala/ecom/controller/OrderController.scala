@@ -6,6 +6,7 @@ import akka.http.scaladsl.server.Directives._
 import akka.http.scaladsl.server.Route
 import com.google.inject.{Inject, Singleton}
 import ecom.service.OrderService
+import ecom.utils.TokenUtil
 import spray.json._
 
 import scala.concurrent.ExecutionContext
@@ -18,7 +19,10 @@ class OrderController @Inject()(orderService: OrderService, implicit val ec: Exe
   val routes: Route =
     logRequestResult("orders-logging") {
       pathPrefix("orders") { //no "/" in paths
-        path(LongNumber) { userId =>
+        path("list")
+        headerValueByName("Authorization") { token =>
+          new TokenUtil().verifyToken(token)
+          val userId: Long = new TokenUtil().getUserId(token)
           get {
             val list = orderService.getOrderListForUser(userId).map(x => x.toJson).toJson
             complete(StatusCodes.OK, list)

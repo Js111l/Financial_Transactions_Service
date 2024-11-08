@@ -1,7 +1,7 @@
 package ecom.config.registry
 
 import akka.http.scaladsl.marshallers.sprayjson.SprayJsonSupport
-import ecom.actors.model.{Address, Client, CustomerData, PaymentIntentRequestModel, PaymentRequest, PaymentResponse, ProductModel, TokenResponse, UserOrderListModel}
+import ecom.actors.model.{Address, Client, CustomerData, PaymentDetails, PaymentIntentRequestModel, PaymentRequest, PaymentResponse, ProductModel, TokenResponse, UserOrderListModel}
 import ecom.enums.{DocumentType, PaymentType}
 import spray.json.{DefaultJsonProtocol, DeserializationException, JsString, JsValue, RootJsonFormat}
 
@@ -33,6 +33,7 @@ class JsonFormattersConfig extends SprayJsonSupport with DefaultJsonProtocol {
 
   implicit val customerDataJson = jsonFormat4(CustomerData.apply)
   implicit val productModelJson = jsonFormat2(ProductModel.apply)
-  implicit val paymentIntentJson = jsonFormat4(PaymentIntentRequestModel.apply)
+  implicit val paymentIntentJson = jsonFormat5(PaymentIntentRequestModel.apply)
+  implicit val paymentDetailsJson = jsonFormat2(PaymentDetails.apply)
 
 }

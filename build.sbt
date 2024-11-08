@@ -30,5 +30,8 @@ libraryDependencies ++= Seq(
   "com.stripe" % "stripe-java" % "24.22.0",
   "com.typesafe.akka" %% "akka-http-spray-json" % "10.5.3",
   "org.flywaydb" % "flyway-core" % "10.20.1",
-  "org.flywaydb" % "flyway-database-postgresql" % "10.20.1" % "runtime"
+  "org.flywaydb" % "flyway-database-postgresql" % "10.20.1" % "runtime",
+  "io.jsonwebtoken" % "jjwt-api" % "0.12.6",
+  "io.jsonwebtoken" % "jjwt-impl" % "0.12.6" % "runtime",
+  "io.jsonwebtoken" % "jjwt-jackson" % "0.12.6" % "runtime"
 )

@@ -3,10 +3,11 @@ package ecom.service
 import com.google.inject.{Inject, Singleton}
 import com.stripe.model.PaymentIntent
 import com.stripe.param.PaymentIntentCreateParams
-import ecom.actors.model.{PaymentIntentRequestModel, TokenResponse}
+import ecom.actors.model.{PaymentDetails, PaymentIntentRequestModel, TokenResponse}
 import ecom.dao.entities.{Adjustment, FinancialDocument, Invoice, Order, OrderProduct, PaymentIntentEntity, Receipt, Refund}
 import ecom.dao.repository.UserOrderRepository
 import ecom.dao.repository.documents.{AdjustmentRepository, InvoiceRepository, ReceiptRepository, RefundRepository}
+import ecom.utils.TokenUtil
 
 import java.time.LocalDateTime
 import scala.concurrent.Future
@@ -53,12 +54,26 @@ class TransactionService @Inject()(invoiceRepository: InvoiceRepository,
 
   }
 
+  def getPaymentDetails(uuid: String): Future[PaymentDetails] = {
+    val resultTuple = sql"""
+         select p.payment_intent_id, o.user_id
+         from user_order o join payment_intent p on
+         o.id = p.order_id
+         where p.uuid = $uuid
+       """.as[(String, Long)]
+    db.run(resultTuple.transactionally).map {
+      x => PaymentDetails(x(0)._1, x(0)._2)
+    }
+  }
+
   def getAllInvoices(): Future[Seq[Invoice]] = {
     this.invoiceRepository.findAll2()
   }
 
 
-  def getIdSecretTupleAndSaveNewOrder(intentModel: PaymentIntentRequestModel): Future[(Long, String, String)] = {
+  def getIdSecretTupleAndSaveNewOrder(intentModel: PaymentIntentRequestModel,
+                                      token: Option[String]): Future[(Long, String, String)] = {
+   // new TokenUtil().ge
     this.createUserOrder(intentModel)
       .transformWith {
         case Failure(ex) =>
@@ -77,7 +92,7 @@ class TransactionService @Inject()(invoiceRepository: InvoiceRepository,
       }
   }
 
-  def getSecretByUUID(uuid: String): Future[TokenResponse] = {
+  def getSecretByUUID(uuid: String, token: Option[String]): Future[TokenResponse] = {
     val action = (orderRepository.getClientSecretByUUID(uuid)).transactionally
     db.run(action).map { x =>
       TokenResponse(x._1, x._2, x._3)
@@ -94,10 +109,10 @@ class TransactionService @Inject()(invoiceRepository: InvoiceRepository,
   }
 
 
-  private def getPaymentIntentEntity(intent: PaymentIntent, orderId: Long): PaymentIntentEntity = {
+  private def getPaymentIntentEntity(intent: PaymentIntent, uuid: String, orderId: Long): PaymentIntentEntity = {
     PaymentIntentEntity(
       0,
-      UUID.randomUUID().toString, //TU POWINIEN BYC UUID, W HEADERZE PRZEKAZ
+      uuid, //TU POWINIEN BYC UUID, W HEADERZE PRZEKAZ
       intent.getClientSecret,
       orderId
     )
@@ -111,8 +126,8 @@ class TransactionService @Inject()(invoiceRepository: InvoiceRepository,
 
     this.setupPaymentMethods(paymentIntentCreateParamsBuilder)
     val intent = PaymentIntent.create(paymentIntentCreateParamsBuilder.build())
-
-    val entity = this.getPaymentIntentEntity(intent, orderId)
+    //W MODELU MASZ PRZEKAZAC UUID, UUID KLUCZ WARTOSC klient secret
+    val entity = this.getPaymentIntentEntity(intent, intentModel.uuid, orderId)
     val action = orderRepository.savePaymentIntent(entity).transactionally
     db.run(action).map(_ => (entity.uuid, intent.getClientSecret))
   }
