@@ -12,7 +12,6 @@ import akka.http.scaladsl.server.Directives._
 import ch.megard.akka.http.cors.scaladsl.CorsDirectives.cors
 import ch.megard.akka.http.cors.scaladsl.model.{HttpHeaderRange, HttpOriginMatcher}
 import ch.megard.akka.http.cors.scaladsl.settings.CorsSettings
-import ecom.config.AppConfig
 
 import scala.concurrent.ExecutionContextExecutor
 
@@ -25,7 +24,8 @@ object Main extends App {
   val taskScheduler = injector.getInstance(classOf[TaskScheduler])
   taskScheduler.startScheduler(system)
   val routes = //injector.getInstance(classOf[TransactionController]).routes ~
-    injector.getInstance(classOf[PaymentController]).routes ~ injector.getInstance(classOf[OrderController]).routes
+    injector.getInstance(classOf[PaymentController]).routes ~
+      injector.getInstance(classOf[OrderController]).routes
 
 
   val (host, port) = ("0.0.0.0", 8082)
@@ -35,15 +35,8 @@ object Main extends App {
       .withAllowCredentials(true)
       .withAllowedMethods(Seq(GET, POST, PUT, DELETE, OPTIONS, PATCH))
       .withAllowedHeaders(HttpHeaderRange.apply("Content-Type", "Authorization")) // Ensure proper header configuration
-  )
-  {
-   // optionalHeaderValueByName("Authorization") { jwtToken =>
-     // authorizeRequest(jwtToken)
+  ) {
       routes
-   // }
   })
 
-  private def authorizeRequest(jwtToken: Option[String]) = {
-    println(jwtToken+"2137")
-  }
 }

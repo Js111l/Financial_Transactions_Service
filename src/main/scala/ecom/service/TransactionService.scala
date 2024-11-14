@@ -3,7 +3,7 @@ package ecom.service
 import com.google.inject.{Inject, Singleton}
 import com.stripe.model.PaymentIntent
 import com.stripe.param.PaymentIntentCreateParams
-import ecom.actors.model.{PaymentDetails, PaymentIntentRequestModel, TokenResponse}
+import ecom.actors.model.{CustomerData, PaymentDetails, PaymentIntentRequestModel, TokenResponse}
 import ecom.dao.entities.{Adjustment, FinancialDocument, Invoice, Order, OrderProduct, PaymentIntentEntity, Receipt, Refund}
 import ecom.dao.repository.UserOrderRepository
 import ecom.dao.repository.documents.{AdjustmentRepository, InvoiceRepository, ReceiptRepository, RefundRepository}
@@ -71,10 +71,8 @@ class TransactionService @Inject()(invoiceRepository: InvoiceRepository,
   }
 
 
-  def getIdSecretTupleAndSaveNewOrder(intentModel: PaymentIntentRequestModel,
-                                      token: Option[String]): Future[(Long, String, String)] = {
-   // new TokenUtil().ge
-    this.createUserOrder(intentModel)
+  def getIdSecretTupleAndSaveNewOrder(intentModel: PaymentIntentRequestModel, clientData: CustomerData): Future[(Long, String, String)] = {
+    this.createUserOrder(intentModel, clientData)
       .transformWith {
         case Failure(ex) =>
           val exMessage = ex.getMessage
@@ -112,7 +110,7 @@ class TransactionService @Inject()(invoiceRepository: InvoiceRepository,
   private def getPaymentIntentEntity(intent: PaymentIntent, uuid: String, orderId: Long): PaymentIntentEntity = {
     PaymentIntentEntity(
       0,
-      uuid, //TU POWINIEN BYC UUID, W HEADERZE PRZEKAZ
+      uuid,
       intent.getClientSecret,
       orderId
     )
@@ -132,18 +130,11 @@ class TransactionService @Inject()(invoiceRepository: InvoiceRepository,
     db.run(action).map(_ => (entity.uuid, intent.getClientSecret))
   }
 
-
-  private def validateUser(): Unit = {
-    Thread.sleep(5_000)
-    if (true) {
-      throw new IllegalArgumentException("Exception!")
-    }
-  }
-
-  private def createNewOrder(intentRequestModel: PaymentIntentRequestModel): Order = {
+  private def createNewOrder(intentRequestModel: PaymentIntentRequestModel, clientData: CustomerData): Order = {
     Order(
       0,
-      intentRequestModel.client.id,
+      clientData.id,
+      intentRequestModel.email,
       LocalDateTime.now(),
       "",
       "",
@@ -152,15 +143,15 @@ class TransactionService @Inject()(invoiceRepository: InvoiceRepository,
     )
   }
 
-  private def createUserOrder(intentRequestModel: PaymentIntentRequestModel): Future[Long] = {
+  private def createUserOrder(intentRequestModel: PaymentIntentRequestModel, clientData: CustomerData): Future[Long] = {
     val action =
       (for {
-        orderId <- orderRepository.save(this.createNewOrder(intentRequestModel))
+        orderId <- orderRepository.save(this.createNewOrder(intentRequestModel, clientData))
         //        orders = {
         //          this.validateUser() test exceptions
         //          List()
         //        }
-        products = intentRequestModel.products.map { x => OrderProduct(0, x.id, orderId) }
+        products = intentRequestModel.products.map { x => OrderProduct(0, x.id, x.name,x.price,x.quantity, x.imageUrl, orderId) }
         _ <- orderRepository.saveProductOrders(products)
       } yield (orderId)).transactionally
     db.run(action)

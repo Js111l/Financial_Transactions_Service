@@ -25,8 +25,10 @@ class OrderTable(tag: Tag) extends Table[Order](tag, "user_order") {
 
   private def paymentStatus = column[String]("payment_status")
 
+  private def email = column[String]("email")
 
-  def * : ProvenShape[Order] = (id, userId, createDate, paymentStatus, paymentMethod, shippingAddress, billAddress) <> (Order.tupled, Order.unapply)
+
+  def * : ProvenShape[Order] = (id, userId, email, createDate, paymentStatus, paymentMethod, shippingAddress, billAddress) <> (Order.tupled, Order.unapply)
 
 
 

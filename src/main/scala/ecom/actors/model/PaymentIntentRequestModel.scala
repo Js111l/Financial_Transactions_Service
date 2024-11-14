@@ -1,15 +1,13 @@
 package ecom.actors.model
 
-case class PaymentIntentRequestModel(client: CustomerData,
-                                     amount: BigDecimal,
+case class PaymentIntentRequestModel(amount: BigDecimal,
                                      localCurrency: String, //todo to enum ?
                                      products: List[ProductModel],
-                                     uuid: String
+                                     uuid: String,
+                                     email: String
                                     ) {
 
 
 }
 
-case class ProductModel(id: Long, quantity: Int)
-
-case class CustomerData(id: Long, name: String, email: String, phone: String) {}
+case class ProductModel(id: Long, quantity: Int, name: String, price: BigDecimal, imageUrl: String)

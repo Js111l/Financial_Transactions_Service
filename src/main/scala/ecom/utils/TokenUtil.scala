@@ -1,5 +1,6 @@
 package ecom.utils;
 
+import ecom.actors.model.CustomerData
 import io.jsonwebtoken.Jwts
 
 import javax.crypto.SecretKey
@@ -34,10 +35,22 @@ class TokenUtil {
       .compact()
   }
 
-  def getUserId(token: String) = {
-    throw new IllegalStateException("Unimplemented")
+  def getCustomerDataFromToken(token: String) ={
+    val payload = Jwts.parser()
+      .verifyWith(getKey())
+      .build()
+      .parseSignedClaims(token)
+      .getPayload
+    CustomerData(
+      payload.get("userId") match {
+        case str: String if str.isEmpty => -1;
+        case integer: Integer => integer.asInstanceOf[Int]
+      },
+      payload.get("name").asInstanceOf[String],
+      payload.get("userEmail").asInstanceOf[String],
+      payload.get("phoneNumber").asInstanceOf[String]
+    )
   }
-
   @throws[NoSuchAlgorithmException]
   @throws[InvalidKeyException]
   private def getKey(): SecretKeySpec = {

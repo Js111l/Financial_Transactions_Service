@@ -18,16 +18,17 @@ import scala.util.{Failure, Success}
 class PaymentController @Inject()(service: TransactionService)(implicit val ec: ExecutionContext) extends BaseController {
 
   implicit val system: ActorSystem = ActorSystem("payment-controller")
-  private val paymentActor: ActorRef = system.actorOf(Props[PaymentService])
 
   val routes: Route =
     pathPrefix("payments") {
       path("intent") {
         post {
-          optionalHeaderValueByName("Authorization") { token =>
-            new TokenUtil().verifyToken(token.get)
+          headerValueByName("Authorization") { token =>
+            new TokenUtil().verifyToken(token)
+            val customer = new TokenUtil().getCustomerDataFromToken(token)
+
             entity(as[PaymentIntentRequestModel]) { model =>
-              onComplete(service.getIdSecretTupleAndSaveNewOrder(model, token)) {
+              onComplete(service.getIdSecretTupleAndSaveNewOrder(model, customer)) {
                 case Failure(exception) =>
                   val exMessage = exception.getMessage
                   complete(HttpResponse(StatusCodes.InternalServerError, entity = exMessage))
