@@ -6,19 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="f975022f-77bd-498e-bb1c-2d479c4d5f5d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/ecom/Main.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ecom/Main.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/ecom/actors/model/PaymentIntentRequestModel.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ecom/actors/model/PaymentIntentRequestModel.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/ecom/actors/model/UserOrderListModel.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ecom/actors/model/UserOrderListModel.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/ecom/config/registry/JsonFormattersConfig.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ecom/config/registry/JsonFormattersConfig.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/ecom/config/registry/MainModule.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ecom/config/registry/MainModule.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/ecom/controller/OrderController.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ecom/controller/OrderController.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/ecom/controller/PaymentController.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ecom/controller/PaymentController.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/ecom/dao/entities/Order.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ecom/dao/entities/Order.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/ecom/dao/entities/OrderProduct.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ecom/dao/entities/OrderProduct.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/ecom/dao/repository/UserOrderRepository.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ecom/dao/repository/UserOrderRepository.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/ecom/dao/table/OrderProductTable.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ecom/dao/table/OrderProductTable.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/ecom/dao/table/OrderTable.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ecom/dao/table/OrderTable.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/ecom/service/OrderService.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ecom/service/OrderService.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/ecom/service/TransactionService.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ecom/service/TransactionService.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/ecom/utils/TokenUtil.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ecom/utils/TokenUtil.scala" afterDir="false" />
     </list>
@@ -92,12 +80,13 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "develop",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/home/jakub-wiercz/Desktop/gateway",
+    "last_opened_file_path": "/home/jakub-wiercz/Desktop/Financial_Transactions_Service/src/main/resources",
     "settings.editor.selected.configurable": "reference.settings.project.maven.runner"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources" />
       <recent name="C:\Users\Kuba\Desktop\Ecom\backend\services\FinancialTransactionsService" />
       <recent name="C:\Users\Kuba\Desktop\Ecom\backend\services\FinancialTransactionsService\src\main" />
       <recent name="C:\Users\Kuba\Desktop\Ecom\backend\services\FinancialTransactionsService\src\main\scala" />
@@ -176,19 +165,5 @@
       <updated>1711121197820</updated>
     </task>
     <servers />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="scala-line">
-          <url>file://$PROJECT_DIR$/src/main/scala/ecom/controller/PaymentController.scala</url>
-          <line>30</line>
-          <properties>
-            <option name="lambda-ordinal" value="-1" />
-          </properties>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

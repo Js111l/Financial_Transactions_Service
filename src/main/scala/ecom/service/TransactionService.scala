@@ -7,25 +7,11 @@ import ecom.actors.model.{CustomerData, PaymentDetails, PaymentIntentRequestMode
 import ecom.dao.entities.{Adjustment, FinancialDocument, Invoice, Order, OrderProduct, PaymentIntentEntity, Receipt, Refund}
 import ecom.dao.repository.UserOrderRepository
 import ecom.dao.repository.documents.{AdjustmentRepository, InvoiceRepository, ReceiptRepository, RefundRepository}
-import ecom.utils.TokenUtil
 
 import java.time.LocalDateTime
 import scala.concurrent.Future
 import scala.util.{Failure, Success}
 import slick.jdbc.PostgresProfile.api._
-
-import java.util.UUID
-
-// JESLI USER INICJUCJE PLATNOSC TO TAKIE FLOW:
-
-//1. Zapisuje sie order, potem ten intent itp., wszystko po staremu.
-//2. Musi byc wygenerowany token do sesji platnosci, na 10 minut,
-// musi byc unikalny i scisle powiazny z obecna sesja.
-//3. user jesli ma poprawny token itp. to moze byc na tym widoku platnosci i zainicjować zapłatę
-//4. Otherwise, wywali błąd i nie wpuści go.
-//5. Klient bedzie mial mozliwosc ponowienia zakpupu, jezeli produkt bedzie dostepny itp.
-//   Wtedy bedzie takie flow, ze generuje sie token do ponownej zapłaty, powiazany z sesja i payment intentem
-//6. wszystkie tokeny w http only cookie.
 
 
 @Singleton

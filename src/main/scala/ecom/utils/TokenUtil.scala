@@ -3,16 +3,13 @@ package ecom.utils;
 import ecom.actors.model.CustomerData
 import io.jsonwebtoken.Jwts
 
-import javax.crypto.SecretKey
 import javax.crypto.SecretKeyFactory
 import javax.crypto.spec.PBEKeySpec
 import javax.crypto.spec.SecretKeySpec
-import java.security.{InvalidKeyException, Key, NoSuchAlgorithmException, PublicKey}
-import java.security.spec.InvalidKeySpecException
+import java.security.{InvalidKeyException, Key, NoSuchAlgorithmException}
 import java.time.Instant
 import java.time.temporal.ChronoUnit
 import java.util.Date
-import java.util.HashMap
 import java.util.Map;
 
 
