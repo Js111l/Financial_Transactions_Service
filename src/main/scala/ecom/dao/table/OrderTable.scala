@@ -9,28 +9,15 @@ import java.time.LocalDateTime
 
 
 class OrderTable(tag: Tag) extends Table[Order](tag, "user_order") {
-  def id = column[Long]("id", PrimaryKey, AutoInc)
+  def id = column[Long]("id", O.PrimaryKey, O.AutoInc)
+  def userId = column[Long]("user_id")
+  def createDate = column[LocalDateTime]("create_date")
+  def paymentMethod = column[String]("payment_method")
+  def paymentStatus = column[String]("payment_status")
+  def email = column[String]("email")
+  def shippingAddressId = column[Long]("shippingAddressId")
+  def billingAddressId = column[Long]("billingAddressId")
 
-  //private def id = column[Long]("id", O.PrimaryKey, O.AutoInc)
-  private def userId = column[Long]("user_id")
+  def * = (id, userId, email, createDate, paymentStatus, paymentMethod, shippingAddressId, billingAddressId) <> (Order.tupled, Order.unapply)
 
-  private def createDate = column[LocalDateTime]("create_date")
-
-  private def paymentMethod = column[String]("payment_method")
-
-  private def shippingAddress = column[String]("shipping_address")
-
-  private def billAddress = column[String]("bill_address")
-
-
-  private def paymentStatus = column[String]("payment_status")
-
-  private def email = column[String]("email")
-
-
-  def * : ProvenShape[Order] = (id, userId, email, createDate, paymentStatus, paymentMethod, shippingAddress, billAddress) <> (Order.tupled, Order.unapply)
-
-
-
-  //TABLE QUERIES
 }

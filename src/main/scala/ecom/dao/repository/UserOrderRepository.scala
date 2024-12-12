@@ -1,7 +1,7 @@
 package ecom.dao.repository
 
 import com.google.inject.{Inject, Singleton}
-import ecom.actors.model.{PaymentDetails, UserOrderListModel, UserOrdersModel}
+import ecom.actors.model.{OrderDetailsModel, PaymentDetails, UserOrderListModel, UserOrdersModel}
 import ecom.dao.entities.{Order, OrderProduct, PaymentIntentEntity}
 import ecom.dao.table.{OrderProductTable, OrderTable, PaymentIntentTable}
 import slick.jdbc.GetResult
@@ -118,4 +118,6 @@ class UserOrderRepository @Inject()(implicit val ec: ExecutionContext) extends B
       }
     }
   }
+
+  def getOrderDetails(orderId: String): Future[OrderDetailsModel] = ???//TODO!
 }

@@ -8,8 +8,8 @@ case class Order(id: Long,
                  createDate: LocalDateTime,
                  paymentMethod: String,
                  paymentStatus: String, //narazie taki string, doeclowo enum
-                 shippingAddress: String, //narazi string, docelowo model/encja
-                 billAddress: String //narazie taki string, docelowo model/encja,
+                 shippingAddressId: Long, //narazi string, docelowo model/encja
+                 billAddressId: Long //narazie takA KLASA, docelowo model/encja dla adresu do rachunku,
                 ) {
 
 }

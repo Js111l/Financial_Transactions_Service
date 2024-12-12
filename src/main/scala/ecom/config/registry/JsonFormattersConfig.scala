@@ -1,11 +1,11 @@
 package ecom.config.registry
 
 import akka.http.scaladsl.marshallers.sprayjson.SprayJsonSupport
-import ecom.actors.model.{Address, Client, CustomerData, PaymentDetails, PaymentIntentRequestModel, PaymentRequest, PaymentResponse, ProductModel, TokenResponse, UserOrderListModel, UserOrdersModel}
+import ecom.actors.model.{Address, AddressModel, Client, CustomerData, OrderDetailsModel, PaymentDetails, PaymentIntentRequestModel, PaymentRequest, PaymentResponse, ProductModel, TokenResponse, UserOrderListModel, UserOrdersModel}
 import ecom.enums.{DocumentType, PaymentType}
 import spray.json.{DefaultJsonProtocol, DeserializationException, JsString, JsValue, JsonFormat, RootJsonFormat}
 
-import java.time.LocalDateTime
+import java.time.{LocalDate, LocalDateTime}
 import java.time.format.DateTimeFormatter
 
 //JSON MARSHALLING AND UNMARSHALLING CONFIG CLASS
@@ -33,9 +33,19 @@ class JsonFormattersConfig extends SprayJsonSupport with DefaultJsonProtocol {
 
     def read(value: JsValue): LocalDateTime = value match {
       case JsString(s) => LocalDateTime.parse(s, DateTimeFormatter.ISO_LOCAL_DATE_TIME)
-      case _ => throw new DeserializationException("LocalDateTime expected")
+      case _ => throw DeserializationException("LocalDateTime expected")
     }
   }
+
+  implicit val localDateFormat: RootJsonFormat[LocalDate] = new RootJsonFormat[LocalDate] {
+    def write(dt: LocalDate): JsValue = JsString(dt.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME))
+
+    def read(value: JsValue): LocalDate = value match {
+      case JsString(s) => LocalDate.parse(s, DateTimeFormatter.ISO_LOCAL_DATE_TIME)
+      case _ => throw DeserializationException("LocalDate expected")
+    }
+  }
+
   implicit val addressJson: RootJsonFormat[Address] = jsonFormat5(Address.apply)
   implicit val clientJson: RootJsonFormat[Client] = jsonFormat6(Client.apply)
   implicit val paymentResponseJson: RootJsonFormat[PaymentResponse] = jsonFormat6(PaymentResponse.apply)
@@ -45,7 +55,9 @@ class JsonFormattersConfig extends SprayJsonSupport with DefaultJsonProtocol {
 
   implicit val customerDataJson = jsonFormat4(CustomerData.apply)
   implicit val productModelJson = jsonFormat5(ProductModel.apply)
-  implicit val paymentIntentJson = jsonFormat5(PaymentIntentRequestModel.apply)
+  implicit val addressModelJson = jsonFormat5(AddressModel.apply)
+  implicit val paymentIntentJson = jsonFormat8(PaymentIntentRequestModel.apply)
   implicit val paymentDetailsJson = jsonFormat2(PaymentDetails.apply)
   implicit val userOrdersJson = jsonFormat3(UserOrdersModel.apply)
+  implicit val orderDetailsJson = jsonFormat7(OrderDetailsModel.apply)
 }
