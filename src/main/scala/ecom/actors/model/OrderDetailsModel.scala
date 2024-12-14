@@ -1,15 +1,16 @@
 package ecom.actors.model
 
-import java.time.LocalDate
+import java.time.{LocalDate, LocalDateTime}
 
 case class OrderDetailsModel(id: Long,
-                             orderDate: LocalDate,
+                             orderDate: LocalDateTime,
                              paymentMethod: String, //TODO narazie str
-                             products: List[Long],
+                             var products: List[UserOrderListModel],
                              productsTotalPrice: BigDecimal,
                              shippingCost: BigDecimal,
                              totalPrice: BigDecimal,
-                            //adresy ?
+                             shippingAddress: String,
+                             billingAddress: String
                             ) {
 
 }

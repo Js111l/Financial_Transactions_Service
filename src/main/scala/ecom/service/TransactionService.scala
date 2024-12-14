@@ -120,12 +120,12 @@ class TransactionService @Inject()(invoiceRepository: InvoiceRepository,
     Order(
       0,
       clientData.id,
-      intentRequestModel.email,
+      Option(intentRequestModel.email),
       LocalDateTime.now(),
-      intentRequestModel.paymentMethod,
-      "", //TODO adres do rachunku
-      intentRequestModel.shippingAddressId,
-      intentRequestModel.billingAddressId,
+       Option(intentRequestModel.paymentMethod),
+      Option(""), //TODO adres do rachunku
+      Option(intentRequestModel.shippingAddress),
+      Option(intentRequestModel.billingAddress),
     )
   }
 

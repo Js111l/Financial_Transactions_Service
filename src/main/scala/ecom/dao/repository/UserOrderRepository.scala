@@ -15,7 +15,7 @@ import scala.concurrent.{ExecutionContext, Future}
 
 @Singleton
 class UserOrderRepository @Inject()(implicit val ec: ExecutionContext) extends BaseRepository {
-  private lazy val userOrders = TableQuery[OrderTable]
+  private lazy val userOrdersTQ = TableQuery[OrderTable]
   private lazy val ordersTQ = TableQuery[OrderProductTable]
   private lazy val paymentIntentTQ = TableQuery[PaymentIntentTable]
   implicit val localDateTime = GetResult[LocalDateTime](
@@ -39,7 +39,7 @@ class UserOrderRepository @Inject()(implicit val ec: ExecutionContext) extends B
   )
 
   def save(order: Order): DBIO[Long] = {
-    userOrders returning userOrders.map {
+    userOrdersTQ returning userOrdersTQ.map {
       _.id
     } += order
   }
@@ -73,9 +73,6 @@ class UserOrderRepository @Inject()(implicit val ec: ExecutionContext) extends B
           price,
           quantity,
           create_date,
-          payment_method,
-          shipping_address,
-          bill_address,
           payment_status,
           email,
           image_url
@@ -84,7 +81,9 @@ class UserOrderRepository @Inject()(implicit val ec: ExecutionContext) extends B
         JOIN
           user_order uo
         ON
-          uo.id = opm.order_id""".as[(Long, Long, String, BigDecimal, Long, LocalDateTime, String, String, String, String, String, String)]
+          uo.id = opm.order_id
+         WHERE uo.user_id = $userId
+         """.as[(Long, Long, String, BigDecimal, Long, LocalDateTime, String, String, String)]
     // order id i timestamp -> lista zamowien
     val map = mutable.HashMap[(Long, LocalDateTime), List[UserOrderListModel]]()
     db.run(resultTuple.transactionally).map {
@@ -102,13 +101,13 @@ class UserOrderRepository @Inject()(implicit val ec: ExecutionContext) extends B
               tuple._3,
               tuple._5,
               tuple._4,
-              tuple._12
+              tuple._9
             ))
           }
         }
 
         map.keys.map {
-          x=>
+          x =>
             UserOrdersModel(
               x._1,
               x._2,
@@ -119,5 +118,64 @@ class UserOrderRepository @Inject()(implicit val ec: ExecutionContext) extends B
     }
   }
 
-  def getOrderDetails(orderId: String): Future[OrderDetailsModel] = ???//TODO!
+  def getOrderDetails(orderId: Long): Future[OrderDetailsModel] = {
+      val resultTuple = sql"""
+        SELECT
+          order_id,
+          product_id, --product
+          name, --product
+          price, --product
+          quantity, --product
+          create_date,
+          payment_method,
+          shipping_address,
+          bill_address,
+          payment_status,
+          email,
+          image_url
+        FROM
+          order_product_map opm
+        JOIN
+          user_order uo
+        ON
+          uo.id = opm.order_id
+         WHERE uo.id = $orderId
+         """.as[(Long, Long, String, BigDecimal, Long, LocalDateTime, String, String, String, String, String, String)]
+
+      val map = mutable.HashMap[OrderDetailsModel, List[UserOrderListModel]]()
+      var key: OrderDetailsModel = null
+      db.run(resultTuple.transactionally).map {
+        x => {
+          x.foreach {
+            tuple => {
+              val orderId: Long = tuple._1
+              val createDate: LocalDateTime = tuple._6
+
+              if (key == null) key = OrderDetailsModel( //assign once
+                orderId,
+                createDate,
+                tuple._7, //paymentMethod
+                List(),
+                BigDecimal.apply("0"),
+                BigDecimal.apply("0"),
+                BigDecimal.apply("0"),
+                tuple._8,
+                tuple._9
+              )
+              val list = map.getOrElse(key, List())
+
+              map.put(key, list :+ UserOrderListModel( //dodawanie produktow
+                tuple._1,
+                tuple._3,
+                tuple._5,
+                tuple._4,
+                tuple._12
+              ))
+            }
+          }
+        }
+          key.products = map.getOrElse(key, List())
+          key
+      }
+  }
 }

@@ -6,7 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="f975022f-77bd-498e-bb1c-2d479c4d5f5d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/ecom/actors/model/CustomerData.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ecom/actors/model/CustomerData.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.conf" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.conf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/db/V03__address.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/ecom/actors/model/OrderDetailsModel.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ecom/actors/model/OrderDetailsModel.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/ecom/actors/model/PaymentIntentRequestModel.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ecom/actors/model/PaymentIntentRequestModel.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/ecom/config/registry/JsonFormattersConfig.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ecom/config/registry/JsonFormattersConfig.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/ecom/controller/OrderController.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ecom/controller/OrderController.scala" afterDir="false" />
@@ -81,10 +83,10 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Application.ecom.Main.executor": "Debug",
+    "Application.ecom.Main.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "develop",
+    "git-widget-placeholder": "order-details-and-addresses",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/home/jakub-wiercz/Desktop/Financial_Transactions_Service/src/main/resources",
     "settings.editor.selected.configurable": "reference.settings.project.maven.runner"
@@ -177,8 +179,8 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="scala-line">
           <url>file://$PROJECT_DIR$/src/main/scala/ecom/service/TransactionService.scala</url>
-          <line>128</line>
-          <option name="timeStamp" value="1" />
+          <line>126</line>
+          <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

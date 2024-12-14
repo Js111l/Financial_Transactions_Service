@@ -22,38 +22,34 @@ class OrderController @Inject()(orderService: OrderService, implicit val ec: Exe
       path("list") {
         headerValueByName("Authorization") { token =>
           new TokenUtil().verifyToken(token)
-
+          val customer = new TokenUtil().getCustomerDataFromToken(token);
           get {
-            parameters(Symbol("userId").as[Long]) { (userId) =>
-              onComplete(orderService.getOrderListForUser(userId)) {
-                case Failure(exception) => {
-                  val exMessage = exception.getMessage
-                  complete(HttpResponse(StatusCodes.InternalServerError, entity = exMessage))
-                }
-                case Success(value) => {
-                  complete(value)
-                }
+            onComplete(orderService.getOrderListForUser(customer.id)) {
+              case Failure(exception) => {
+                val exMessage = exception.getMessage
+                complete(HttpResponse(StatusCodes.InternalServerError, entity = exMessage))
+              }
+              case Success(value) => {
+                complete(value)
               }
             }
           }
         }
       } ~
-        path("/" / Segment) { orderId =>
+        path("details" / LongNumber) { orderId =>
           headerValueByName("Authorization") { token =>
-            new TokenUtil().verifyToken(token)
+           new TokenUtil().verifyToken(token)
 
             get {
               onComplete(orderService.getOrderDetails(orderId)) {
-                case Failure(exception) => {
+                case Failure(exception) =>
                   val exMessage = exception.getMessage
                   complete(HttpResponse(StatusCodes.InternalServerError, entity = exMessage))
-                }
-                case Success(value) => {
+                case Success(value) =>
                   complete(value)
-                }
               }
             }
           }
-        }
+       }
     }
 }

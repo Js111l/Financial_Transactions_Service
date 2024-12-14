@@ -6,8 +6,10 @@ case class PaymentIntentRequestModel(amount: BigDecimal,
                                      uuid: String,
                                      email: String,
                                      paymentMethod: String,
-                                     shippingAddressId: Long,
-                                     billingAddressId: Long
+                                     shippingAddress: String,
+                                     billingAddress: String
+                                     //shippingAddressId: Long,
+                                     //billingAddressId: Long
                                     ) {
 
 
